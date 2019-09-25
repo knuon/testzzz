@@ -15,7 +15,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/knuon@rentpath.com/GA/GatestPara"
+					"notebookPath": "/Users/knuon@rentpath.com/GA/GatestPara",
+					"baseParameters": {
+						"env": "qqqq"
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "AzureDatabricks1",
