@@ -1,0 +1,258 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "ktestdf"
+		},
+		"AzureDatabricks1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
+		},
+		"AzureStorage1_testHdinsightK_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureStorage1_testHdinsightK'"
+		},
+		"Source_BlobStorage_asr_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Source_BlobStorage_asr'"
+		},
+		"Source_BlobStorage_c91_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Source_BlobStorage_c91'"
+		},
+		"Source_BlobStorage_hq1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Source_BlobStorage_hq1'"
+		},
+		"Destination_DataLakeStore_asr_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://rentpathdatalake.azuredatalakestore.net/webhdfs/v1"
+		},
+		"Destination_DataLakeStore_asr_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "0fa5a385-a7a0-4bf8-83fd-e06d574f9a5e"
+		},
+		"Destination_DataLakeStore_asr_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "DataLake"
+		},
+		"Destination_DataLakeStore_c91_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://rentpathdatalake.azuredatalakestore.net/webhdfs/v1"
+		},
+		"Destination_DataLakeStore_c91_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "0c777d2e-f69e-41e4-8dc2-28fcf4c9604b"
+		},
+		"Destination_DataLakeStore_c91_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "0fa5a385-a7a0-4bf8-83fd-e06d574f9a5e"
+		},
+		"Destination_DataLakeStore_c91_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "DataLake"
+		},
+		"Destination_DataLakeStore_hq1_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://rentpathdatalake.azuredatalakestore.net/webhdfs/v1"
+		},
+		"Destination_DataLakeStore_hq1_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "0fa5a385-a7a0-4bf8-83fd-e06d574f9a5e"
+		},
+		"Destination_DataLakeStore_hq1_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "DataLake"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Notebook1",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/knuon@rentpath.com/GA/GatestPara",
+							"baseParameters": {
+								"env": "qqqq"
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks1",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://eastus2.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDatabricks1_accessToken')]"
+					},
+					"existingClusterId": "0822-162613-mien816"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureStorage1_testHdinsightK')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureStorage1_testHdinsightK_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Destination_DataLakeStore_asr')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDataLakeStore",
+				"typeProperties": {
+					"dataLakeStoreUri": "[parameters('Destination_DataLakeStore_asr_properties_typeProperties_dataLakeStoreUri')]",
+					"subscriptionId": "[parameters('Destination_DataLakeStore_asr_properties_typeProperties_subscriptionId')]",
+					"resourceGroupName": "[parameters('Destination_DataLakeStore_asr_properties_typeProperties_resourceGroupName')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Destination_DataLakeStore_c91')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDataLakeStore",
+				"typeProperties": {
+					"dataLakeStoreUri": "[parameters('Destination_DataLakeStore_c91_properties_typeProperties_dataLakeStoreUri')]",
+					"tenant": "[parameters('Destination_DataLakeStore_c91_properties_typeProperties_tenant')]",
+					"subscriptionId": "[parameters('Destination_DataLakeStore_c91_properties_typeProperties_subscriptionId')]",
+					"resourceGroupName": "[parameters('Destination_DataLakeStore_c91_properties_typeProperties_resourceGroupName')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Destination_DataLakeStore_hq1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDataLakeStore",
+				"typeProperties": {
+					"dataLakeStoreUri": "[parameters('Destination_DataLakeStore_hq1_properties_typeProperties_dataLakeStoreUri')]",
+					"subscriptionId": "[parameters('Destination_DataLakeStore_hq1_properties_typeProperties_subscriptionId')]",
+					"resourceGroupName": "[parameters('Destination_DataLakeStore_hq1_properties_typeProperties_resourceGroupName')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Source_BlobStorage_asr')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('Source_BlobStorage_asr_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Source_BlobStorage_c91')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('Source_BlobStorage_c91_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Source_BlobStorage_hq1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('Source_BlobStorage_hq1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/integrationRuntime1PubNet')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "Managed",
+				"typeProperties": {
+					"computeProperties": {
+						"location": "East US 2",
+						"dataFlowProperties": {
+							"computeType": "General",
+							"coreCount": 8,
+							"timeToLive": 0
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/integrationRuntime1Test')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"description": "For Test Only",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		}
+	]
+}

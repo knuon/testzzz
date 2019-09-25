@@ -1,0 +1,147 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "ktestdf"
+		},
+		"AzureDatabricks1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
+		},
+		"AzureStorage1_testHdinsightK_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureStorage1_testHdinsightK'"
+		},
+		"Source_BlobStorage_asr_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Source_BlobStorage_asr'"
+		},
+		"Source_BlobStorage_c91_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Source_BlobStorage_c91'"
+		},
+		"Source_BlobStorage_hq1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Source_BlobStorage_hq1'"
+		},
+		"Destination_DataLakeStore_asr_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://rentpathdatalake.azuredatalakestore.net/webhdfs/v1"
+		},
+		"Destination_DataLakeStore_asr_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "0fa5a385-a7a0-4bf8-83fd-e06d574f9a5e"
+		},
+		"Destination_DataLakeStore_asr_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "DataLake"
+		},
+		"Destination_DataLakeStore_c91_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://rentpathdatalake.azuredatalakestore.net/webhdfs/v1"
+		},
+		"Destination_DataLakeStore_c91_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "0c777d2e-f69e-41e4-8dc2-28fcf4c9604b"
+		},
+		"Destination_DataLakeStore_c91_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "0fa5a385-a7a0-4bf8-83fd-e06d574f9a5e"
+		},
+		"Destination_DataLakeStore_c91_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "DataLake"
+		},
+		"Destination_DataLakeStore_hq1_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://rentpathdatalake.azuredatalakestore.net/webhdfs/v1"
+		},
+		"Destination_DataLakeStore_hq1_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "0fa5a385-a7a0-4bf8-83fd-e06d574f9a5e"
+		},
+		"Destination_DataLakeStore_hq1_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "DataLake"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas Token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureDatabricks1_accessToken": {
+						"value": "[parameters('AzureDatabricks1_accessToken')]"
+					},
+					"AzureStorage1_testHdinsightK_connectionString": {
+						"value": "[parameters('AzureStorage1_testHdinsightK_connectionString')]"
+					},
+					"Source_BlobStorage_asr_connectionString": {
+						"value": "[parameters('Source_BlobStorage_asr_connectionString')]"
+					},
+					"Source_BlobStorage_c91_connectionString": {
+						"value": "[parameters('Source_BlobStorage_c91_connectionString')]"
+					},
+					"Source_BlobStorage_hq1_connectionString": {
+						"value": "[parameters('Source_BlobStorage_hq1_connectionString')]"
+					},
+					"Destination_DataLakeStore_asr_properties_typeProperties_dataLakeStoreUri": {
+						"value": "[parameters('Destination_DataLakeStore_asr_properties_typeProperties_dataLakeStoreUri')]"
+					},
+					"Destination_DataLakeStore_asr_properties_typeProperties_subscriptionId": {
+						"value": "[parameters('Destination_DataLakeStore_asr_properties_typeProperties_subscriptionId')]"
+					},
+					"Destination_DataLakeStore_asr_properties_typeProperties_resourceGroupName": {
+						"value": "[parameters('Destination_DataLakeStore_asr_properties_typeProperties_resourceGroupName')]"
+					},
+					"Destination_DataLakeStore_c91_properties_typeProperties_dataLakeStoreUri": {
+						"value": "[parameters('Destination_DataLakeStore_c91_properties_typeProperties_dataLakeStoreUri')]"
+					},
+					"Destination_DataLakeStore_c91_properties_typeProperties_tenant": {
+						"value": "[parameters('Destination_DataLakeStore_c91_properties_typeProperties_tenant')]"
+					},
+					"Destination_DataLakeStore_c91_properties_typeProperties_subscriptionId": {
+						"value": "[parameters('Destination_DataLakeStore_c91_properties_typeProperties_subscriptionId')]"
+					},
+					"Destination_DataLakeStore_c91_properties_typeProperties_resourceGroupName": {
+						"value": "[parameters('Destination_DataLakeStore_c91_properties_typeProperties_resourceGroupName')]"
+					},
+					"Destination_DataLakeStore_hq1_properties_typeProperties_dataLakeStoreUri": {
+						"value": "[parameters('Destination_DataLakeStore_hq1_properties_typeProperties_dataLakeStoreUri')]"
+					},
+					"Destination_DataLakeStore_hq1_properties_typeProperties_subscriptionId": {
+						"value": "[parameters('Destination_DataLakeStore_hq1_properties_typeProperties_subscriptionId')]"
+					},
+					"Destination_DataLakeStore_hq1_properties_typeProperties_resourceGroupName": {
+						"value": "[parameters('Destination_DataLakeStore_hq1_properties_typeProperties_resourceGroupName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

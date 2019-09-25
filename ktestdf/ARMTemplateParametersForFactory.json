@@ -1,0 +1,54 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "ktestdf"
+		},
+		"AzureDatabricks1_accessToken": {
+			"value": ""
+		},
+		"AzureStorage1_testHdinsightK_connectionString": {
+			"value": ""
+		},
+		"Source_BlobStorage_asr_connectionString": {
+			"value": ""
+		},
+		"Source_BlobStorage_c91_connectionString": {
+			"value": ""
+		},
+		"Source_BlobStorage_hq1_connectionString": {
+			"value": ""
+		},
+		"Destination_DataLakeStore_asr_properties_typeProperties_dataLakeStoreUri": {
+			"value": "https://rentpathdatalake.azuredatalakestore.net/webhdfs/v1"
+		},
+		"Destination_DataLakeStore_asr_properties_typeProperties_subscriptionId": {
+			"value": "0fa5a385-a7a0-4bf8-83fd-e06d574f9a5e"
+		},
+		"Destination_DataLakeStore_asr_properties_typeProperties_resourceGroupName": {
+			"value": "DataLake"
+		},
+		"Destination_DataLakeStore_c91_properties_typeProperties_dataLakeStoreUri": {
+			"value": "https://rentpathdatalake.azuredatalakestore.net/webhdfs/v1"
+		},
+		"Destination_DataLakeStore_c91_properties_typeProperties_tenant": {
+			"value": "0c777d2e-f69e-41e4-8dc2-28fcf4c9604b"
+		},
+		"Destination_DataLakeStore_c91_properties_typeProperties_subscriptionId": {
+			"value": "0fa5a385-a7a0-4bf8-83fd-e06d574f9a5e"
+		},
+		"Destination_DataLakeStore_c91_properties_typeProperties_resourceGroupName": {
+			"value": "DataLake"
+		},
+		"Destination_DataLakeStore_hq1_properties_typeProperties_dataLakeStoreUri": {
+			"value": "https://rentpathdatalake.azuredatalakestore.net/webhdfs/v1"
+		},
+		"Destination_DataLakeStore_hq1_properties_typeProperties_subscriptionId": {
+			"value": "0fa5a385-a7a0-4bf8-83fd-e06d574f9a5e"
+		},
+		"Destination_DataLakeStore_hq1_properties_typeProperties_resourceGroupName": {
+			"value": "DataLake"
+		}
+	}
+}
