@@ -1,0 +1,14 @@
+{
+	"name": "Destination_DataLakeStore_c91",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureDataLakeStore",
+		"typeProperties": {
+			"dataLakeStoreUri": "https://rentpathdatalake.azuredatalakestore.net/webhdfs/v1",
+			"tenant": "0c777d2e-f69e-41e4-8dc2-28fcf4c9604b",
+			"subscriptionId": "0fa5a385-a7a0-4bf8-83fd-e06d574f9a5e",
+			"resourceGroupName": "DataLake"
+		},
+		"annotations": []
+	}
+}
