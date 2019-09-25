@@ -15,7 +15,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Shared/QA/Test1"
+					"notebookPath": "/Shared/QA/Test1",
+					"baseParameters": {
+						"env": "PROD"
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "AzureDatabricks1",
