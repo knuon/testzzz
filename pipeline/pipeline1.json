@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Shared/QA/Test1",
+					"notebookPath": "/Users/knuon@rentpath.com/GA/GatestPara",
 					"baseParameters": {
 						"env": "PROD",
 						"zzzz": "xxxx"
