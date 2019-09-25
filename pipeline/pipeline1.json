@@ -17,8 +17,9 @@
 				"typeProperties": {
 					"notebookPath": "/Users/knuon@rentpath.com/GA/GatestPara",
 					"baseParameters": {
-						"env": "PROD",
-						"zzzz": "xxxx"
+						"env": "0",
+						"zzzz": "xxxx",
+						"ssss": " "
 					}
 				},
 				"linkedServiceName": {
